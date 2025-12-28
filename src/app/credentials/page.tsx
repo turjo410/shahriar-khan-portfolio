@@ -13,7 +13,8 @@ import {
   Star,
   Calendar,
   MapPin,
-  ChevronRight
+  ChevronRight,
+  Languages
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -82,6 +83,21 @@ const awards = [
   },
 ];
 
+// TOEFL Score Data
+const toeflScore = {
+  testName: "TOEFL iBT",
+  testDate: "January 20, 2024",
+  totalScore: 93,
+  maxScore: 120,
+  sections: [
+    { name: "Reading", score: 21, maxScore: 30, color: "cyan" },
+    { name: "Listening", score: 25, maxScore: 30, color: "purple" },
+    { name: "Speaking", score: 24, maxScore: 30, color: "pink" },
+    { name: "Writing", score: 23, maxScore: 30, color: "blue" },
+  ],
+  reportFile: "/documents/english-proficiency/TOEFL_Report.pdf",
+};
+
 // Academic Documents
 const documents = [
   {
@@ -132,13 +148,14 @@ export default function CredentialsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16"
         >
           {[
             { label: "Current CGPA", value: "3.92/4.00", color: "cyan" },
-            { label: "Semesters Completed", value: "7+", color: "purple" },
-            { label: "Dean's List", value: "All", color: "pink" },
-            { label: "Scholarship", value: "Merit", color: "blue" },
+            { label: "TOEFL Score", value: "93/120", color: "purple" },
+            { label: "Semesters Completed", value: "7+", color: "pink" },
+            { label: "Dean's List", value: "All", color: "blue" },
+            { label: "Scholarship", value: "Merit", color: "cyan" },
           ].map((stat, index) => (
             <Card key={index} className={`text-center border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-${stat.color}`}>
               <CardContent className="pt-6 pb-6">
@@ -268,6 +285,77 @@ export default function CredentialsPage() {
               );
             })}
           </div>
+        </motion.section>
+
+        {/* TOEFL Score Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="mb-16"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30">
+              <Languages className="w-6 h-6 text-neon-cyan" />
+            </div>
+            <h2 className="text-3xl font-bold">English Proficiency</h2>
+          </div>
+
+          <Card className="border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-cyan overflow-hidden">
+            <div className="h-1 bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink" />
+            <CardContent className="pt-8 pb-8">
+              <div className="flex flex-col lg:flex-row gap-8">
+                {/* Total Score */}
+                <div className="flex flex-col items-center justify-center lg:border-r lg:border-primary/20 lg:pr-8">
+                  <div className="relative">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 border-4 border-neon-cyan flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-neon-cyan">{toeflScore.totalScore}</div>
+                        <div className="text-sm text-muted-foreground">out of {toeflScore.maxScore}</div>
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 px-2 py-1 bg-neon-cyan/20 border border-neon-cyan/50 rounded-lg">
+                      <span className="text-xs font-bold text-neon-cyan">TOEFL iBT</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    <Calendar className="w-3 h-3 inline mr-1" />
+                    {toeflScore.testDate}
+                  </p>
+                </div>
+
+                {/* Section Scores */}
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-6 text-center lg:text-left">Section Scores</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {toeflScore.sections.map((section, index) => (
+                      <motion.div
+                        key={section.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + index * 0.1 }}
+                        className={`text-center p-4 rounded-xl bg-neon-${section.color}/5 border border-neon-${section.color}/30 hover:border-neon-${section.color}/60 transition-colors`}
+                      >
+                        <div className={`text-2xl font-bold text-neon-${section.color}`}>{section.score}</div>
+                        <div className="text-xs text-muted-foreground mb-1">out of {section.maxScore}</div>
+                        <div className="text-sm font-medium">{section.name}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Download Report */}
+                  <div className="mt-6 flex justify-center lg:justify-start">
+                    <Link href={toeflScore.reportFile} target="_blank">
+                      <Button variant="outline" className="gap-2 hover-glow-cyan border-glow-cyan">
+                        <Download className="w-4 h-4" />
+                        Download TOEFL Report
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </motion.section>
 
         {/* Academic Documents Section */}

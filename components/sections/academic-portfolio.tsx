@@ -19,11 +19,11 @@ import Link from "next/link"
 const academicLinks = [
   {
     title: "Credentials & Transcripts",
-    description: "Academic qualifications, GPA, coursework, and official documents",
+    description: "Academic qualifications, GPA, TOEFL score, and official documents",
     href: "/credentials",
     icon: GraduationCap,
     color: "cyan",
-    stats: "3.92 CGPA",
+    stats: "3.92 CGPA • TOEFL 93",
     badge: "Dean's List",
   },
   {
