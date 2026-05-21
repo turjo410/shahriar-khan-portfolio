@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { ArrowUp } from "lucide-react";
 
 export function ScrollProgress() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,9 +15,8 @@ export function ScrollProgress() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 100);
+      setIsVisible(window.scrollY > 600);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -25,35 +25,27 @@ export function ScrollProgress() {
     <>
       {/* Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-orange-500 to-pink-500 origin-left z-[100]"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[100]"
+        style={{
+          scaleX,
+          background:
+            "linear-gradient(90deg, hsl(var(--accent-blue)), hsl(var(--accent-indigo)))",
+        }}
       />
 
       {/* Back to Top Button */}
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-400 hover:to-orange-400 shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center justify-center group z-50"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 right-8 w-11 h-11 rounded-full bg-[hsl(var(--surface-elevated))] border border-soft-accent text-accent-blue hover:border-accent-blue transition-all duration-300 flex items-center justify-center z-50 shadow-lg"
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.94 }}
           aria-label="Scroll to top"
         >
-          <svg
-            className="w-6 h-6 text-white group-hover:scale-110 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
+          <ArrowUp className="w-4 h-4" />
         </motion.button>
       )}
     </>

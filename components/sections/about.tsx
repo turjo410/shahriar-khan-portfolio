@@ -1,193 +1,192 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Award, Briefcase, GraduationCap, Code2, Brain, Rocket } from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { GraduationCap, Briefcase, MapPin, Calendar } from "lucide-react"
+import CountUp from "react-countup"
+import { useRef } from "react"
 
-const stats = [
-  { label: "Projects Deployed", value: "5+", icon: Rocket, color: "cyan" },
-  { label: "CGPA", value: "3.92", icon: GraduationCap, color: "purple" },
-  { label: "Technologies", value: "20+", icon: Code2, color: "pink" },
-  { label: "AI Models", value: "10+", icon: Brain, color: "blue" },
+const STATS = [
+  { value: 3.92, suffix: "/4.00", decimals: 2, label: "CGPA" },
+  { value: 9, suffix: "+", decimals: 0, label: "Projects shipped" },
+  { value: 200, suffix: "+", decimals: 0, label: "SaaS members" },
+  { value: 93, suffix: "", decimals: 0, label: "TOEFL score" },
 ]
 
 export function About() {
-  return (
-    <section id="about" className="py-20 bg-gradient-cyber relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-20 pointer-events-none" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
-        >
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <motion.div
-              className="inline-block px-4 py-2 rounded-full bg-card/50 border border-primary/20 mb-4 backdrop-blur-sm"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-sm text-neon-cyan">Introduction</span>
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              About <span className="text-gradient-animate">Me</span>
-            </h2>
-          </div>
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-100px" })
 
-          {/* Introduction Text with Enhanced Styling */}
+  return (
+    <section
+      id="about"
+      className="relative py-24 sm:py-32"
+      ref={ref}
+    >
+      <div className="container relative">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-14"
+        >
+          <span className="section-label">About</span>
+          <h2 className="mt-5 text-display font-bold tracking-tight balance display-text">
+            Engineering AI systems that{" "}
+            <span className="text-gradient-pro">ship</span> and{" "}
+            <span className="text-gradient-pro">scale</span>.
+          </h2>
+        </motion.div>
+
+        {/* Bento: bio + stats */}
+        <div className="grid lg:grid-cols-3 gap-5 mb-10">
+          {/* Bio (2/3) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mb-12"
+            transition={{ duration: 0.55 }}
+            className="lg:col-span-2 card-pro p-7 sm:p-9"
           >
-            <Card className="border-primary/20 bg-card/80 backdrop-blur-sm overflow-hidden">
-              <CardContent className="pt-8 pb-8">
-                <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
-                  <span className="text-neon-cyan font-semibold">Computer Science student</span> specializing in{" "}
-                  <span className="text-neon-purple font-semibold">production-ready deep learning systems</span> with proven deployment
-                  experience. Built real-time object detection systems achieving{" "}
-                  <span className="text-neon-pink font-semibold">97.5% mAP</span> on edge devices, Bengali OCR
-                  pipelines processing <span className="text-neon-cyan font-semibold">30+ vehicles/minute</span>, and autonomous UAV control systems. 
-                  Combines strong theoretical foundation with hands-on expertise in{" "}
-                  <span className="text-neon-purple font-semibold">PyTorch, TensorFlow, and full-stack development</span>.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="space-y-5 text-lg sm:text-xl leading-relaxed text-secondary pretty">
+              <p>
+                Hey — I&apos;m Shahriar, a CSE grad from{" "}
+                <span className="text-[hsl(var(--text-primary))] font-medium">
+                  East West University, Dhaka
+                </span>
+                . I graduated with a 3.92 CGPA on a full merit scholarship, and
+                I&apos;ve spent most of my university years building things
+                that actually run in production.
+              </p>
+              <p>
+                Some of that work:{" "}
+                <span className="text-accent-blue">
+                  an AI-powered traffic enforcement app
+                </span>{" "}
+                for Dhaka officers using YOLOv11,{" "}
+                <span className="text-accent-blue">
+                  an election analytics dashboard
+                </span>{" "}
+                predicting seat outcomes across Bangladesh, and{" "}
+                <span className="text-accent-blue">
+                  a SaaS platform with 200+ paying users
+                </span>
+                . I like projects where real people depend on the output.
+              </p>
+              <p>
+                Right now I&apos;m looking for a team that wants to build
+                something that matters — full-time roles, research
+                collaborations, or just a good conversation about AI.
+              </p>
+            </div>
           </motion.div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className={`text-center border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-${stat.color} transition-all`}>
-                    <CardContent className="pt-6 pb-6">
-                      <Icon className={`w-8 h-8 mx-auto mb-3 text-neon-${stat.color}`} />
-                      <div className={`text-3xl font-bold text-neon-${stat.color} mb-1`}>{stat.value}</div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )
-            })}
-          </div>
+          {/* Stats (1/3) */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="grid grid-cols-2 gap-3"
+          >
+            {STATS.map((stat, idx) => (
+              <div
+                key={idx}
+                className="card-pro p-5 flex flex-col justify-between min-h-[120px]"
+              >
+                <div className="text-3xl sm:text-4xl font-bold font-mono text-accent-blue leading-none">
+                  {inView ? (
+                    <CountUp
+                      end={stat.value}
+                      duration={2}
+                      decimals={stat.decimals}
+                      suffix={stat.suffix}
+                    />
+                  ) : (
+                    <>0{stat.suffix}</>
+                  )}
+                </div>
+                <div className="text-xs uppercase tracking-wider text-tertiary mt-3">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
-          {/* Main Cards with Enhanced Design */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-cyan transition-all group">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 mx-auto mb-4 bg-neon-cyan/10 border-2 border-neon-cyan/30 rounded-2xl flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <GraduationCap className="w-8 h-8 text-neon-cyan" />
-                  </motion.div>
-                  <h3 className="font-bold text-xl mb-3 text-neon-cyan">Education</h3>
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold">
-                      B.Sc. in Computer Science & Engineering
-                    </p>
-                    <p className="text-sm text-muted-foreground">East West University</p>
-                    <div className="pt-3 mt-3 border-t border-primary/10">
-                      <div className="inline-block px-4 py-2 rounded-full bg-neon-cyan/10 border border-neon-cyan/30">
-                        <span className="text-lg font-bold text-neon-cyan">3.92</span>
-                        <span className="text-xs text-muted-foreground ml-1">/4.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+        {/* Education + Current role */}
+        <div className="grid md:grid-cols-2 gap-5">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="card-pro card-pro-lift p-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-lg bg-tint-blue border border-accent-blue/30 grid place-items-center flex-shrink-0">
+                <GraduationCap className="w-5 h-5 text-accent-blue" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] uppercase tracking-widest text-tertiary mb-1">
+                  Education
+                </div>
+                <h3 className="font-semibold text-[hsl(var(--text-primary))]">
+                  B.Sc. in Computer Science &amp; Engineering
+                </h3>
+                <p className="text-sm text-secondary mt-1">
+                  East West University · Dhaka, Bangladesh
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mt-3">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-tertiary">
+                    <Calendar className="w-3.5 h-3.5" />
+                    Class of 2026
+                  </span>
+                  <span className="pill text-accent-emerald border-accent-emerald">
+                    CGPA 3.92 / 4.00
+                  </span>
+                  <span className="pill">Full Merit Scholarship</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-purple transition-all group">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 mx-auto mb-4 bg-neon-purple/10 border-2 border-neon-purple/30 rounded-2xl flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Briefcase className="w-8 h-8 text-neon-purple" />
-                  </motion.div>
-                  <h3 className="font-bold text-xl mb-3 text-neon-purple">Experience</h3>
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold">Teaching Assistant</p>
-                    <p className="text-sm text-muted-foreground">East West University</p>
-                    <div className="pt-3 mt-3 border-t border-primary/10">
-                      <div className="inline-block px-4 py-2 rounded-full bg-neon-purple/10 border border-neon-purple/30">
-                        <span className="text-sm font-semibold text-neon-purple">Nov 2024 - Present</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-pink transition-all group">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 mx-auto mb-4 bg-neon-pink/10 border-2 border-neon-pink/30 rounded-2xl flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Award className="w-8 h-8 text-neon-pink" />
-                  </motion.div>
-                  <h3 className="font-bold text-xl mb-3 text-neon-pink">Achievements</h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-neon-pink"></div>
-                      <p className="text-sm">Full Merit Scholarship (100%)</p>
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-neon-pink"></div>
-                      <p className="text-sm">Dean&apos;s Merit Scholarship</p>
-                    </div>
-                    <div className="pt-3 mt-3 border-t border-primary/10">
-                      <div className="inline-block px-4 py-2 rounded-full bg-neon-pink/10 border border-neon-pink/30">
-                        <span className="text-sm font-semibold text-neon-pink">Multiple Awards</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="card-pro card-pro-lift p-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-lg bg-tint-indigo border border-accent-indigo/30 grid place-items-center flex-shrink-0">
+                <Briefcase className="w-5 h-5 text-accent-indigo" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] uppercase tracking-widest text-tertiary mb-1">
+                  Current Role
+                </div>
+                <h3 className="font-semibold text-[hsl(var(--text-primary))]">
+                  Undergraduate Teaching Assistant
+                </h3>
+                <p className="text-sm text-secondary mt-1">
+                  Dept. of Computer Science &amp; Engineering, EWU
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mt-3">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-tertiary">
+                    <Calendar className="w-3.5 h-3.5" />
+                    Nov 2024 — Present
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-tertiary">
+                    <MapPin className="w-3.5 h-3.5" />
+                    Dhaka, Bangladesh
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

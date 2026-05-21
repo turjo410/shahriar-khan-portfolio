@@ -14,12 +14,12 @@ export function TerminalEffect({ commands, className = "" }: TerminalEffectProps
 
   useEffect(() => {
     const command = commands[currentCommandIndex]
-    const typingSpeed = isDeleting ? 50 : 100
-    const pauseTime = isDeleting ? 1000 : 2000
+    const typingSpeed = isDeleting ? 35 : 70
+    const pauseTime = isDeleting ? 1200 : 2200
 
     if (!isDeleting && currentText === command) {
-      setTimeout(() => setIsDeleting(true), pauseTime)
-      return
+      const t = setTimeout(() => setIsDeleting(true), pauseTime)
+      return () => clearTimeout(t)
     }
 
     if (isDeleting && currentText === "") {
@@ -38,18 +38,21 @@ export function TerminalEffect({ commands, className = "" }: TerminalEffectProps
   }, [currentText, currentCommandIndex, isDeleting, commands])
 
   return (
-    <div className={`font-mono text-sm sm:text-base ${className}`}>
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-neon-green">●</span>
-        <span className="text-neon-cyan">●</span>
-        <span className="text-neon-pink">●</span>
-        <span className="text-muted-foreground ml-2">~/portfolio</span>
-      </div>
+    <div className={`font-mono text-[13px] sm:text-sm ${className}`}>
       <div className="flex items-center gap-2">
-        <span className="text-neon-cyan">$</span>
-        <span className="text-foreground">{currentText}</span>
-        <span className="inline-block w-2 h-5 bg-neon-cyan animate-pulse ml-1"></span>
+        <span className="text-accent-blue">$</span>
+        <span className="text-[hsl(var(--text-primary))]">{currentText}</span>
+        <span
+          className="inline-block w-[7px] h-[14px] bg-accent-blue ml-0.5"
+          style={{ animation: "blink 1s step-end infinite" }}
+        />
       </div>
+      <style jsx>{`
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `}</style>
     </div>
   )
 }

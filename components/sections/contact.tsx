@@ -1,202 +1,181 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Mail, Phone, MapPin, Linkedin, Github, Rocket, ArrowRight, Calendar } from "lucide-react"
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Github,
+  ArrowRight,
+  Clock,
+} from "lucide-react"
 import Link from "next/link"
+
+const CHANNELS = [
+  {
+    label: "Email",
+    value: "turjo410@gmail.com",
+    href: "mailto:turjo410@gmail.com",
+    icon: Mail,
+    accent: "blue",
+  },
+  {
+    label: "Phone",
+    value: "+880 1975-759760",
+    href: "tel:+8801975759760",
+    icon: Phone,
+    accent: "indigo",
+  },
+  {
+    label: "LinkedIn",
+    value: "/shahriar-khan-08770b289",
+    href: "https://linkedin.com/in/shahriar-khan-08770b289",
+    icon: Linkedin,
+    accent: "blue",
+  },
+  {
+    label: "GitHub",
+    value: "@turjo410",
+    href: "https://github.com/turjo410",
+    icon: Github,
+    accent: "indigo",
+  },
+] as const
+
+const accentMap = {
+  blue: { tint: "bg-tint-blue", border: "border-accent-blue/30", text: "text-accent-blue" },
+  indigo: { tint: "bg-tint-indigo", border: "border-accent-indigo/30", text: "text-accent-indigo" },
+} as const
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gradient-cyber relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-      
-      <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="relative py-24 sm:py-32">
+      <div className="container relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.5 }}
+          className="mb-12 max-w-3xl"
         >
-          {/* Hire Me CTA Block */}
-          <motion.div
-            className="mb-16"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-neon opacity-20 blur-3xl rounded-3xl" />
-              <Card className="relative overflow-hidden border-primary/30 bg-card/90 backdrop-blur-md box-glow-cyan">
-                <CardContent className="pt-12 pb-12 text-center">
-                  <motion.div
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 mb-6"
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Rocket className="w-4 h-4 text-neon-cyan" />
-                    <span className="text-sm text-neon-cyan font-semibold">Available for Opportunities</span>
-                  </motion.div>
-                  
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                    Let&apos;s Build Something <span className="text-gradient-animate">Extraordinary</span>
-                  </h2>
-                  
-                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                    Looking for AI/ML opportunities, research collaborations, or consulting projects. 
-                    Let&apos;s discuss how I can help bring your AI vision to reality.
-                  </p>
+          <span className="section-label">Contact</span>
+          <h2 className="mt-5 text-display font-bold tracking-tight balance display-text">
+            Let&apos;s work together.
+          </h2>
+          <p className="mt-4 text-lg text-secondary pretty">
+            I&apos;m open to ML engineer roles, research collaborations, and
+            consulting on production AI systems. Tell me what you&apos;re
+            building — I usually reply within 24 hours.
+          </p>
+        </motion.div>
 
-                  <div className="flex flex-wrap items-center justify-center gap-4">
-                    <Link href="mailto:turjo410@gmail.com">
-                      <Button size="lg" className="gap-2 hover-glow-cyan border-glow-cyan text-lg px-8">
-                        <Mail className="w-5 h-5" />
-                        Start a Conversation
-                        <ArrowRight className="w-5 h-5" />
-                      </Button>
-                    </Link>
-                    <Link href="tel:+8801975759760">
-                      <Button size="lg" variant="outline" className="gap-2 hover-glow-purple border-glow-purple text-lg px-8">
-                        <Phone className="w-5 h-5" />
-                        Schedule a Call
-                        <Calendar className="w-5 h-5" />
-                      </Button>
-                    </Link>
-                  </div>
-
-                  <div className="mt-8 pt-8 border-t border-primary/20">
-                    <p className="text-sm text-muted-foreground mb-4">
-                      ⚡ Typically respond within 24 hours • 🌍 Open to remote & relocation • 💼 Full-time, Contract, Freelance
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
-
-          {/* Contact Information */}
-          <div className="text-center mb-12">
-            <motion.div
-              className="inline-block px-4 py-2 rounded-full bg-card/50 border border-primary/20 mb-4 backdrop-blur-sm"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-sm text-neon-purple">Connect</span>
-            </motion.div>
-            <h3 className="text-2xl sm:text-3xl font-bold mb-2">Get In Touch</h3>
-            <p className="text-muted-foreground">
-              Prefer a different channel? Reach out through any of these platforms
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Link href="mailto:turjo410@gmail.com">
-                <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-cyan transition-all cursor-pointer">
-                  <CardContent className="pt-6 text-center">
-                    <div className="w-14 h-14 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Mail className="w-6 h-6 text-neon-cyan" />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-neon-cyan">Email</h3>
-                    <p className="text-sm text-muted-foreground break-all">
-                      turjo410@gmail.com
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Link href="tel:+8801975759760">
-                <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-purple transition-all cursor-pointer">
-                  <CardContent className="pt-6 text-center">
-                    <div className="w-14 h-14 bg-neon-purple/10 border border-neon-purple/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Phone className="w-6 h-6 text-neon-purple" />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-neon-purple">Phone</h3>
-                    <p className="text-sm text-muted-foreground">
-                      +880-1975759760
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <Link href="https://linkedin.com/in/shahriar-khan-08770b289" target="_blank">
-                <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-cyan transition-all cursor-pointer">
-                  <CardContent className="pt-6 text-center">
-                    <div className="w-14 h-14 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Linkedin className="w-6 h-6 text-neon-cyan" />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-neon-cyan">LinkedIn</h3>
-                    <p className="text-sm text-muted-foreground">
-                      /shahriar-khan
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <Link href="https://github.com/turjo410" target="_blank">
-                <Card className="h-full border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-purple transition-all cursor-pointer">
-                  <CardContent className="pt-6 text-center">
-                    <div className="w-14 h-14 bg-neon-purple/10 border border-neon-purple/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Github className="w-6 h-6 text-neon-purple" />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-neon-purple">GitHub</h3>
-                    <p className="text-sm text-muted-foreground">
-                      @turjo410
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mt-8"
-          >
-            <div className="flex items-center justify-center gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4 text-neon-pink" />
-              <p className="text-sm">
-                📍 East West University, Dhaka, Bangladesh
+        {/* Primary CTA card */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="card-pro p-7 sm:p-10 mb-6"
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="status-dot" />
+                <span className="text-sm text-accent-emerald font-medium">
+                  Available for opportunities
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[hsl(var(--text-primary))]">
+                Have a project or role in mind?
+              </h3>
+              <p className="text-secondary mt-3">
+                The fastest way to reach me is email. I&apos;ll respond with a
+                short note covering availability, fit, and next steps.
               </p>
             </div>
-          </motion.div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link href="mailto:turjo410@gmail.com">
+                <Button
+                  size="lg"
+                  className="btn-lift bg-accent-blue text-white hover:bg-accent-blue/90 px-6 h-11 gap-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  Start a conversation
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="tel:+8801975759760">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="btn-lift border-soft-accent bg-[hsl(var(--surface))] hover:bg-[hsl(var(--surface-elevated))] px-6 h-11 gap-2"
+                >
+                  <Phone className="w-4 h-4" />
+                  Call me
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Channels grid — 4 columns, no Kaggle */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {CHANNELS.map((c, i) => {
+            const Icon = c.icon
+            const accent = accentMap[c.accent]
+            const external = c.href.startsWith("http")
+            return (
+              <motion.div
+                key={c.label}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: 0.05 * i }}
+              >
+                <Link
+                  href={c.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="card-pro card-pro-lift block p-5 h-full"
+                >
+                  <div
+                    className={`w-10 h-10 rounded-lg ${accent.tint} border ${accent.border} grid place-items-center mb-3`}
+                  >
+                    <Icon className={`w-4 h-4 ${accent.text}`} />
+                  </div>
+                  <div className="text-[11px] uppercase tracking-widest text-tertiary mb-1">
+                    {c.label}
+                  </div>
+                  <div className="text-sm font-medium text-[hsl(var(--text-primary))] break-all">
+                    {c.value}
+                  </div>
+                </Link>
+              </motion.div>
+            )
+          })}
+        </div>
+
+        {/* Footer note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-tertiary"
+        >
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="w-3 h-3" />
+            East West University · Dhaka, Bangladesh
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Clock className="w-3 h-3" />
+            Replies within 24 hours
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            🌍 Open to remote &amp; relocation
+          </span>
         </motion.div>
       </div>
     </section>

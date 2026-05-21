@@ -5,10 +5,9 @@ import Lenis from "lenis"
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -17,16 +16,35 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       infinite: false,
     })
 
-    // Animation frame loop
+    // Make Lenis handle anchor clicks so /#contact etc. work
+    function onAnchorClick(e: MouseEvent) {
+      const target = e.target as HTMLElement
+      const anchor = target.closest("a")
+      if (!anchor) return
+      const href = anchor.getAttribute("href") ?? ""
+      // Handle same-page hash links like /#contact or #contact
+      const hash = href.startsWith("/#")
+        ? href.slice(1)          // "/#contact" → "#contact"
+        : href.startsWith("#")
+        ? href                   // "#contact"
+        : null
+      if (!hash) return
+      const el = document.querySelector(hash)
+      if (!el) return
+      e.preventDefault()
+      lenis.scrollTo(el as HTMLElement, { offset: -80, duration: 1.4 })
+    }
+
+    document.addEventListener("click", onAnchorClick)
+
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
-
     requestAnimationFrame(raf)
 
-    // Cleanup
     return () => {
+      document.removeEventListener("click", onAnchorClick)
       lenis.destroy()
     }
   }, [])

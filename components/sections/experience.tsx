@@ -1,165 +1,210 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin, Building2, TrendingUp } from "lucide-react"
+import { Building2, Code2, Camera, Calendar, MapPin } from "lucide-react"
+import BorderGlow from "@/components/border-glow"
 
-const experiences = [
+interface ExperienceItem {
+  title: string
+  company: string
+  department?: string
+  location: string
+  period: string
+  type: "Academic" | "Technical" | "Leadership"
+  icon: typeof Building2
+  responsibilities: string[]
+}
+
+const EXPERIENCES: ExperienceItem[] = [
   {
     title: "Undergraduate Teaching Assistant",
     company: "East West University",
-    department: "Department of Computer Science and Engineering",
+    department: "Department of Computer Science & Engineering",
     location: "Dhaka, Bangladesh",
-    period: "November 2024 - Present",
+    period: "Nov 2024 — Present",
     type: "Academic",
-    color: "cyan",
+    icon: Building2,
     responsibilities: [
-      "Assisted Associate Professor in course delivery and academic support for 80+ undergraduate students",
-      "Streamlined course material management system, reducing administrative workload by 30%",
-      "Graded assignments and provided technical mentorship on programming concepts and algorithms",
-      "Managed digital resources, documentation, and communication between faculty and students",
+      "Assist Associate Professor in course delivery and academic support for 80+ undergraduate students",
+      "Streamlined course material management, reducing administrative workload by 30%",
+      "Grade assignments and provide technical mentorship on programming concepts and algorithms",
+      "Manage digital resources and faculty-student communication channels",
     ],
   },
   {
     title: "General Member",
     company: "East West University Programming Club",
     location: "Dhaka, Bangladesh",
-    period: "December 2023 - Present",
+    period: "Dec 2023 — Present",
     type: "Technical",
-    color: "purple",
+    icon: Code2,
     responsibilities: [
       "Volunteered at 5+ programming contests including inter-university competitive coding events",
       "Participated in multiple ICPC-style programming competitions representing the university",
       "Co-organized coding workshops and technical sessions reaching 100+ students",
-      "Collaborated with team members to foster competitive programming culture on campus",
+      "Collaborated with team members to grow competitive programming culture on campus",
     ],
   },
   {
     title: "Vice President",
     company: "Government Science College Photography Club",
     location: "Dhaka, Bangladesh",
-    period: "May 2018 - November 2020",
+    period: "May 2018 — Nov 2020",
     type: "Leadership",
-    color: "pink",
+    icon: Camera,
     responsibilities: [
-      "Led and coordinated National Photography Festival with 200+ participants and 15+ events",
-      "Managed 20-member executive committee and organized volunteer activities for college festivals",
+      "Led the National Photography Festival with 200+ participants across 15+ events",
+      "Managed a 20-member executive committee and organized volunteer activities for college festivals",
       "Secured 1st place in Cloud's Den Photography Competition among 15 teams",
-      "Participated in AIUB Science Festival Poster Competition and showcased work at Drik's Gallery Exhibition",
+      "Showcased work at Drik's Gallery Exhibition and AIUB Science Festival Poster Competition",
     ],
   },
 ]
 
+const typeAccent = {
+  Academic: {
+    tint: "bg-tint-blue",
+    border: "border-accent-blue/40",
+    text: "text-accent-blue",
+    solid: "bg-accent-blue",
+    glowColor: "222 90 64",
+    colors: ["#4F8EF7", "#6C6EF5", "#60a5fa"],
+  },
+  Technical: {
+    tint: "bg-tint-indigo",
+    border: "border-accent-indigo/40",
+    text: "text-accent-indigo",
+    solid: "bg-accent-indigo",
+    glowColor: "240 84 67",
+    colors: ["#6C6EF5", "#818cf8", "#4F8EF7"],
+  },
+  Leadership: {
+    tint: "bg-tint-amber",
+    border: "border-accent-amber/40",
+    text: "text-accent-amber",
+    solid: "bg-accent-amber",
+    glowColor: "43 96 56",
+    colors: ["#FBBF24", "#f59e0b", "#fcd34d"],
+  },
+} as const
+
 export function Experience() {
   return (
-    <section id="experience" className="py-20 bg-muted/30 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="experience" className="relative py-24 sm:py-32">
+      <div className="container relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.5 }}
+          className="mb-16 max-w-3xl"
         >
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <motion.div
-              className="inline-block px-4 py-2 rounded-full bg-card/50 border border-primary/20 mb-4 backdrop-blur-sm"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-sm text-neon-purple">Professional Journey</span>
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Work <span className="text-gradient-animate">Experience</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Academic, technical, and leadership roles shaping my professional development
-            </p>
-          </div>
+          <span className="section-label">Experience</span>
+          <h2 className="mt-5 text-display font-bold tracking-tight balance display-text">
+            Academic, technical, and leadership roles.
+          </h2>
+        </motion.div>
 
-          {/* Timeline with Enhanced Cards */}
-          <div className="relative space-y-8">
-            {/* Timeline Line */}
-            <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink opacity-30"></div>
+        <div className="relative max-w-4xl">
+          {/* Timeline line */}
+          <div className="absolute left-5 sm:left-7 top-2 bottom-2 w-px bg-[hsl(var(--border))]" />
 
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="relative"
-              >
-                {/* Timeline Dot */}
-                <div className={`hidden md:block absolute left-8 top-8 w-4 h-4 rounded-full bg-neon-${exp.color} transform -translate-x-1/2 z-10 animate-pulse`}></div>
-                
-                <Card className={`md:ml-20 border-primary/20 bg-card/80 backdrop-blur-sm hover-glow-${exp.color} transition-all group`}>
-                  <CardHeader className="border-b border-primary/10">
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <motion.div 
-                            className={`p-2 rounded-lg bg-neon-${exp.color}/10 border border-neon-${exp.color}/30`}
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                          >
-                            {exp.type === "Academic" && <Building2 className={`w-5 h-5 text-neon-${exp.color}`} />}
-                            {exp.type === "Technical" && <TrendingUp className={`w-5 h-5 text-neon-${exp.color}`} />}
-                            {exp.type === "Leadership" && <Building2 className={`w-5 h-5 text-neon-${exp.color}`} />}
-                          </motion.div>
-                          <div>
-                            <CardTitle className="text-xl sm:text-2xl">{exp.title}</CardTitle>
-                            <span className={`inline-block mt-1 text-xs px-3 py-1 rounded-full bg-neon-${exp.color}/10 text-neon-${exp.color} border border-neon-${exp.color}/30 font-semibold`}>
+          <div className="space-y-8">
+            {EXPERIENCES.map((exp, idx) => {
+              const Icon = exp.icon
+              const accent = typeAccent[exp.type]
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: idx * 0.1 }}
+                  className="relative pl-16 sm:pl-20"
+                >
+                  {/* Timeline dot — larger */}
+                  <div
+                    className={`absolute left-2.5 sm:left-4 top-6 w-6 h-6 rounded-full ${accent.tint} border-2 ${accent.border} grid place-items-center shadow-lg`}
+                  >
+                    <span className={`w-2.5 h-2.5 rounded-full ${accent.solid}`} />
+                  </div>
+
+                  {/* BorderGlow wrapping the card */}
+                  <BorderGlow
+                    edgeSensitivity={20}
+                    glowColor={accent.glowColor}
+                    colors={[...accent.colors]}
+                    borderRadius={16}
+                    glowRadius={50}
+                    glowIntensity={1.2}
+                    coneSpread={30}
+                    animated={false}
+                    className="w-full"
+                  >
+                    <div className="p-7 sm:p-9">
+                      {/* Header */}
+                      <div className="flex flex-wrap items-start gap-4 mb-6">
+                        <div
+                          className={`w-12 h-12 rounded-xl ${accent.tint} border-2 ${accent.border} grid place-items-center flex-shrink-0`}
+                        >
+                          <Icon className={`w-6 h-6 ${accent.text}`} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-3 mb-1.5">
+                            <h3 className="text-xl sm:text-2xl font-bold text-[hsl(var(--text-primary))] tracking-tight">
+                              {exp.title}
+                            </h3>
+                            <span
+                              className={`text-[11px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${accent.tint} ${accent.text}`}
+                            >
                               {exp.type}
                             </span>
                           </div>
+                          <p className={`text-base font-semibold ${accent.text}`}>
+                            {exp.company}
+                          </p>
+                          {exp.department && (
+                            <p className="text-sm text-tertiary italic mt-0.5">
+                              {exp.department}
+                            </p>
+                          )}
+                          <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-tertiary">
+                            <span className="inline-flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5" />
+                              {exp.period}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5" />
+                              {exp.location}
+                            </span>
+                          </div>
                         </div>
-                        <p className={`text-base font-semibold text-neon-${exp.color} mb-1`}>{exp.company}</p>
-                        {exp.department && (
-                          <p className="text-sm text-muted-foreground italic">{exp.department}</p>
-                        )}
                       </div>
-                      <div className="flex flex-col gap-2 text-sm">
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-primary/20">
-                          <Calendar className="w-4 h-4 text-neon-cyan" />
-                          <span className="font-medium">{exp.period}</span>
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-primary/20">
-                          <MapPin className="w-4 h-4 text-neon-purple" />
-                          <span>{exp.location}</span>
-                        </div>
-                      </div>
+
+                      {/* Divider */}
+                      <div className="h-px bg-[hsl(var(--border))] mb-6" />
+
+                      {/* Responsibilities — bigger text */}
+                      <ul className="space-y-3">
+                        {exp.responsibilities.map((r) => (
+                          <li
+                            key={r}
+                            className="flex gap-3 text-base text-secondary leading-relaxed"
+                          >
+                            <span
+                              className={`mt-2.5 w-1.5 h-1.5 rounded-full ${accent.solid} flex-shrink-0`}
+                            />
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <ul className="space-y-3">
-                      {exp.responsibilities.map((resp, idx) => (
-                        <motion.li 
-                          key={idx} 
-                          className="flex gap-3 text-sm leading-relaxed group/item"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: idx * 0.05 }}
-                          viewport={{ once: true }}
-                        >
-                          <span className={`mt-1 text-neon-${exp.color} font-bold group-hover/item:scale-125 transition-transform`}>▸</span>
-                          <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">{resp}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                  </BorderGlow>
+                </motion.div>
+              )
+            })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
