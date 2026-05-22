@@ -1,105 +1,190 @@
-import Link from "next/link"
-import { Github, Linkedin, Mail, MapPin } from "lucide-react"
+"use client"
 
-const FOOTER_LINKS = [
-  { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#contact", label: "Contact" },
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
+import {
+  SiGithub,
+  SiKaggle,
+  SiGmail,
+} from "react-icons/si"
+import { FaLinkedinIn } from "react-icons/fa"
+
+const SOCIALS = [
+  { label: "GitHub",   href: "https://github.com/turjo410",                         icon: SiGithub      },
+  { label: "LinkedIn", href: "https://linkedin.com/in/shahriar-khan-08770b289",     icon: FaLinkedinIn  },
+  { label: "Kaggle",   href: "https://www.kaggle.com/turjo410",                     icon: SiKaggle      },
+  { label: "Email",    href: "mailto:turjo410@gmail.com",                           icon: SiGmail       },
 ]
 
 export function Footer() {
   return (
-    <footer className="border-t border-soft bg-[hsl(var(--surface))]/30">
-      <div className="container py-12">
-        {/* Top: brand + nav + socials */}
-        <div className="grid gap-10 md:grid-cols-3 mb-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="grid place-items-center w-9 h-9 rounded-lg bg-tint-blue border border-accent-blue/40 text-accent-blue font-bold text-sm">
-                SK
-              </span>
-              <span className="font-semibold text-[hsl(var(--text-primary))]">
-                Shahriar Khan
-              </span>
+    <footer
+      className="relative border-t border-[hsl(var(--border))] overflow-hidden"
+      style={{ background: "hsl(var(--background))" }}
+    >
+      {/* ── Left vertical icon strip ─────────────────────────────────── */}
+      <div
+        className="hidden lg:flex fixed left-0 bottom-0 flex-col items-center gap-5 pb-8 pt-6 z-40"
+        style={{ width: "3.5rem" }}
+      >
+        <div
+          className="flex flex-col items-center gap-4 px-3 py-5 rounded-2xl"
+          style={{
+            background: "hsl(var(--surface) / 0.6)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid hsl(var(--border-accent))",
+          }}
+        >
+          {SOCIALS.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              aria-label={label}
+              className="text-tertiary hover:text-[hsl(var(--text-primary))] transition-colors duration-200"
+            >
+              <Icon size={18} />
+            </Link>
+          ))}
+        </div>
+        {/* Thin vertical line below icons */}
+        <div
+          className="w-px flex-1 min-h-[40px] max-h-[80px]"
+          style={{ background: "hsl(var(--border-accent))" }}
+        />
+      </div>
+
+      {/* ── Main footer content ──────────────────────────────────────── */}
+      <div className="container pt-16 pb-8 lg:pl-16">
+
+        {/* Giant name */}
+        <h2
+          className="font-black uppercase tracking-tight leading-[0.9]
+                     text-[hsl(var(--text-primary))] mb-14 select-none"
+          style={{ fontSize: "clamp(3rem, 10vw, 8.5rem)" }}
+        >
+          Shahriar<br className="sm:hidden" /> Khan
+        </h2>
+
+        {/* Info grid — 2 col on mobile, 4 col desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+
+          {/* Contact */}
+          <div className="space-y-7">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-2.5">
+                Email
+              </p>
+              <Link
+                href="mailto:turjo410@gmail.com"
+                className="text-sm text-secondary hover:text-[hsl(var(--text-primary))]
+                           transition-colors duration-200"
+              >
+                turjo410@gmail.com
+              </Link>
             </div>
-            <p className="text-sm text-secondary leading-relaxed max-w-xs">
-              AI/ML Engineer building production-ready systems for computer
-              vision, data analytics, and full-stack platforms.
-            </p>
-            <div className="flex items-center gap-2 mt-4 text-xs text-tertiary">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>East West University · Dhaka, Bangladesh</span>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-2.5">
+                Location
+              </p>
+              <p className="text-sm text-secondary">Dhaka, Bangladesh</p>
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="md:justify-self-center">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-tertiary mb-4">
-              Navigate
-            </h4>
-            <ul className="space-y-2">
-              {FOOTER_LINKS.map((link) => (
-                <li key={link.href}>
+          {/* Status */}
+          <div className="space-y-7">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-2.5">
+                Status
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm text-secondary">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse flex-shrink-0" />
+                Open to work
+              </span>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-2.5">
+                Looking for
+              </p>
+              <p className="text-sm text-secondary">Full-time · Funded PhD</p>
+            </div>
+          </div>
+
+          {/* Social links */}
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-4">
+              Social
+            </p>
+            <ul className="space-y-3">
+              {SOCIALS.map(({ label, href }) => (
+                <li key={href}>
                   <Link
-                    href={link.href}
-                    className="text-sm text-secondary hover:text-accent-blue transition-colors"
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="group inline-flex items-center gap-1.5 text-sm text-secondary
+                               hover:text-[hsl(var(--text-primary))] transition-all duration-200
+                               pb-px border-b border-[hsl(var(--border))]
+                               hover:border-[hsl(var(--text-secondary))]"
                   >
-                    {link.label}
+                    {label}
+                    <ArrowUpRight
+                      className="w-3 h-3 opacity-0 -translate-x-1 translate-y-1
+                                 group-hover:opacity-100 group-hover:translate-x-0
+                                 group-hover:translate-y-0 transition-all duration-200"
+                    />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Connect */}
-          <div className="md:justify-self-end">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-tertiary mb-4">
-              Connect
-            </h4>
-            <div className="flex items-center gap-2">
-              <Link
-                href="https://github.com/turjo410"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="w-10 h-10 rounded-lg border border-soft-accent grid place-items-center text-secondary hover:text-accent-blue hover:border-accent-blue/60 transition-all"
-              >
-                <Github className="w-4 h-4" />
-              </Link>
-              <Link
-                href="https://linkedin.com/in/shahriar-khan-08770b289"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-10 h-10 rounded-lg border border-soft-accent grid place-items-center text-secondary hover:text-accent-blue hover:border-accent-blue/60 transition-all"
-              >
-                <Linkedin className="w-4 h-4" />
-              </Link>
-              <Link
-                href="mailto:turjo410@gmail.com"
-                aria-label="Email"
-                className="w-10 h-10 rounded-lg border border-soft-accent grid place-items-center text-secondary hover:text-accent-blue hover:border-accent-blue/60 transition-all"
-              >
-                <Mail className="w-4 h-4" />
-              </Link>
+          {/* Credit */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary mb-4">
+                Made by
+              </p>
+              <p className="text-sm text-secondary leading-relaxed">
+                Designed &amp; Developed
+                <br />
+                by{" "}
+                <span className="text-accent-blue font-medium">
+                  Shahriar Khan
+                </span>
+              </p>
             </div>
-            <p className="text-xs text-tertiary mt-4">
-              Open to ML engineer roles, research collaborations, and consulting.
-            </p>
+            <p className="text-xs text-tertiary mt-8">© 2026</p>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 border-t border-soft flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-tertiary">
-            © 2026 Shahriar Khan. All rights reserved.
-          </p>
+        <div
+          className="flex flex-col sm:flex-row items-start sm:items-center
+                     justify-between gap-4 pt-6 border-t border-[hsl(var(--border))]"
+        >
           <p className="text-xs text-tertiary font-mono">
-            Built with Next.js, TypeScript & Framer Motion.
+            Built with Next.js 16 · Tailwind CSS v4 · Three.js · Framer Motion
           </p>
+
+          <Link
+            href="/resume/Shahriar_Khan_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-[11px] font-mono
+                       uppercase tracking-widest text-secondary
+                       hover:text-[hsl(var(--text-primary))] transition-colors duration-200
+                       border border-[hsl(var(--border))] hover:border-[hsl(var(--border-accent))]
+                       px-4 py-2 rounded-lg"
+          >
+            Resume
+            <ArrowUpRight
+              className="w-3 h-3 opacity-50 group-hover:opacity-100
+                         group-hover:translate-x-0.5 group-hover:-translate-y-0.5
+                         transition-all duration-200"
+            />
+          </Link>
         </div>
       </div>
     </footer>

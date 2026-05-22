@@ -47,20 +47,17 @@ export function Hero() {
             >
               <span className="status-dot" />
               <span className="text-[13px] font-medium text-secondary">
-                Available for ML & engineering roles
+                Open to full-time &amp; research roles
               </span>
             </motion.div>
 
-            {/* Name */}
+            {/* Name — original display-xl size */}
             <motion.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
               className="text-display-xl font-bold tracking-tight leading-[0.95] balance display-text"
             >
-              <span className="block text-secondary text-2xl sm:text-3xl font-medium tracking-normal mb-3">
-                Hi, I&apos;m
-              </span>
               <span className="text-gradient-pro">Shahriar Khan</span>
             </motion.h1>
 
@@ -90,20 +87,20 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="mt-6 text-base sm:text-lg text-secondary max-w-xl leading-relaxed pretty"
             >
-              I&apos;m a CSE graduate from{" "}
+              Wonders are not made — they are born. You are now in the portfolio
+              of one of them. A fast learner, an achiever. From{" "}
               <span className="text-[hsl(var(--text-primary))] font-medium">
-                East West University, Dhaka
+                AI/ML to full-stack
               </span>{" "}
-              who builds AI systems that actually get deployed. I&apos;m
-              actively looking for a{" "}
+              and combining them together is my hobby. Currently open to{" "}
               <span className="text-[hsl(var(--text-primary))] font-medium">
-                full-time software or ML engineering role
-              </span>
-              , and I&apos;m equally interested in a{" "}
-              <span className="text-[hsl(var(--text-primary))] font-medium">
-                fully funded PhD
+                full-time roles
               </span>{" "}
-              in AI, Computer Vision, or a related field.
+              and{" "}
+              <span className="text-[hsl(var(--text-primary))] font-medium">
+                fully funded PhD opportunities
+              </span>{" "}
+              in a related field.
             </motion.p>
 
             {/* CTAs */}
@@ -196,8 +193,8 @@ export function Hero() {
                     sizes="(max-width: 1024px) 80vw, 40vw"
                     className="object-cover"
                   />
-                  {/* Subtle gradient overlay for legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))]/85 via-[hsl(var(--background))]/10 to-transparent" />
+                  {/* Gradient overlay — lighter so the photo isn't swallowed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))]/60 via-[hsl(var(--background))]/5 to-transparent" />
 
                   {/* Bottom overlay: terminal */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">

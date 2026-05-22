@@ -4,18 +4,35 @@ import { useEffect, useState } from "react"
 
 interface TerminalEffectProps {
   commands: string[]
+  /** Max characters before the string is truncated with "…" — default 46 */
+  maxChars?: number
   className?: string
 }
 
-export function TerminalEffect({ commands, className = "" }: TerminalEffectProps) {
+/**
+ * TerminalEffect — types one command at a time then deletes it.
+ * Long strings are truncated at maxChars to prevent overflow on
+ * small screens (mobile 375px).
+ */
+export function TerminalEffect({
+  commands,
+  maxChars = 46,
+  className = "",
+}: TerminalEffectProps) {
+  // Pre-truncate all commands so the typewriter never renders a string
+  // that overflows the glass container
+  const truncated = commands.map((c) =>
+    c.length > maxChars ? c.slice(0, maxChars - 1) + "…" : c
+  )
+
   const [currentCommandIndex, setCurrentCommandIndex] = useState(0)
   const [currentText, setCurrentText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    const command = commands[currentCommandIndex]
-    const typingSpeed = isDeleting ? 35 : 70
-    const pauseTime = isDeleting ? 1200 : 2200
+    const command = truncated[currentCommandIndex]
+    const typingSpeed = isDeleting ? 30 : 60
+    const pauseTime = isDeleting ? 900 : 2000
 
     if (!isDeleting && currentText === command) {
       const t = setTimeout(() => setIsDeleting(true), pauseTime)
@@ -24,7 +41,7 @@ export function TerminalEffect({ commands, className = "" }: TerminalEffectProps
 
     if (isDeleting && currentText === "") {
       setIsDeleting(false)
-      setCurrentCommandIndex((prev) => (prev + 1) % commands.length)
+      setCurrentCommandIndex((prev) => (prev + 1) % truncated.length)
       return
     }
 
@@ -35,20 +52,25 @@ export function TerminalEffect({ commands, className = "" }: TerminalEffectProps
     }, typingSpeed)
 
     return () => clearTimeout(timeout)
-  }, [currentText, currentCommandIndex, isDeleting, commands])
+  }, [currentText, currentCommandIndex, isDeleting, truncated])
 
   return (
-    <div className={`font-mono text-[13px] sm:text-sm ${className}`}>
-      <div className="flex items-center gap-2">
-        <span className="text-accent-blue">$</span>
-        <span className="text-[hsl(var(--text-primary))]">{currentText}</span>
+    <div className={`font-mono text-[12px] sm:text-[13px] overflow-hidden ${className}`}>
+      <div className="flex items-center gap-2 min-w-0">
+        <span className="text-accent-blue flex-shrink-0">$</span>
         <span
-          className="inline-block w-[7px] h-[14px] bg-accent-blue ml-0.5"
-          style={{ animation: "blink 1s step-end infinite" }}
+          className="text-[hsl(var(--text-primary))] truncate"
+          style={{ minWidth: 0 }}
+        >
+          {currentText}
+        </span>
+        <span
+          className="inline-block w-[6px] h-[13px] bg-accent-blue flex-shrink-0"
+          style={{ animation: "term-blink 1s step-end infinite" }}
         />
       </div>
       <style jsx>{`
-        @keyframes blink {
+        @keyframes term-blink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
         }

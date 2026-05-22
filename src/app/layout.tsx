@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CardNav } from "@/components/card-nav";
 import PillNav from "@/components/pill-nav";
+import { MobileDock } from "@/components/mobile-dock";
 import { Footer } from "@/components/footer";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -66,7 +67,7 @@ export default function RootLayout({
           <SmoothScrollProvider>
             <SiteBackground />
             <ScrollProgress />
-            {/* PillNav — fixed so it travels with the page on scroll */}
+            {/* PillNav — desktop only, fixed sticky */}
             <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
               <div className="pointer-events-auto">
                 <PillNav
@@ -75,13 +76,15 @@ export default function RootLayout({
                     { label: "Projects", href: "/#projects" },
                     { label: "Skills", href: "/#skills" },
                     { label: "Experience", href: "/#experience" },
-                    { label: "More", href: "/about" },
+                    { label: "About Me", href: "/about" },
                     { label: "Contact", href: "/#contact" },
                   ]}
                 />
               </div>
             </div>
-            <main className="relative">{children}</main>
+            {/* MobileDock — bottom dock, mobile only */}
+            <MobileDock />
+            <main className="relative pb-24 md:pb-0">{children}</main>
             <Footer />
             <Toaster
               position="bottom-right"
