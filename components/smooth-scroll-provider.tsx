@@ -6,7 +6,7 @@ import Lenis from "lenis"
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1,
       easing: (t) => {
         // Cubic ease-out — fast start, gentle deceleration
         return 1 - Math.pow(1 - t, 3)
