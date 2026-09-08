@@ -1,7 +1,7 @@
 import { ComingSoon } from "@/components/coming-soon"
 
 export const metadata = {
-  title: "Uses — Shahriar Khan",
+  title: "Uses · Shahriar Khan",
   description: "The hardware and software I use day-to-day.",
 }
 

@@ -67,7 +67,7 @@ export function Contact() {
           <p className="mt-4 text-lg text-secondary pretty">
             I&apos;m open to ML engineer roles, research collaborations, and
             consulting on production AI systems. Tell me what you&apos;re
-            building — I usually reply within 24 hours.
+            building, and I usually reply within a day.
           </p>
         </motion.div>
 
@@ -171,7 +171,7 @@ export function Contact() {
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Clock className="w-3 h-3" />
-            Replies within 24 hours
+            Replies within a day
           </span>
           <span className="inline-flex items-center gap-1.5">
             🌍 Open to remote &amp; relocation

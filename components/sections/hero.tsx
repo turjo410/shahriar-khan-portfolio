@@ -2,30 +2,24 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import {
-  ArrowDown,
-  Github,
-  Linkedin,
-  Mail,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react"
+import { CvDropdown } from "@/components/cv-dropdown"
+import { Github, Linkedin, Mail, Sparkles, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { TerminalEffect } from "@/components/terminal-effect"
 
 const COMMANDS = [
-  "✔ TrafficGuard: 16 vehicle classes, YOLOv11 live",
-  "✔ Election: 84.78% Random Forest accuracy",
-  "✔ PromptMaster: 200+ members, $49 lifetime SaaS",
-  "✔ Banana XAI: 12 models, 5 XAI methods",
-  "✔ EnergyIQ: real IoT hardware, GitHub Pages",
+  "✔ TrafficGuard: real-time traffic surveillance for Dhaka",
+  "✔ Brain MRI: self-supervised benchmarking, under review",
+  "✔ Banana XAI: explainable image classification",
+  "✔ Election: machine learning seat prediction dashboard",
+  "✔ PromptMaster: AI learning platform in production",
 ]
 
-const HERO_METRICS = [
-  { value: "200+", label: "Paying SaaS members" },
-  { value: "3.92", label: "CGPA · Scholarship" },
-  { value: "93", label: "TOEFL Score" },
+const HERO_FACTS = [
+  { value: "Computer Vision", label: "Research focus" },
+  { value: "B.Sc. in CSE", label: "East West University" },
+  { value: "Bangladesh", label: "Based in Dhaka" },
 ]
 
 export function Hero() {
@@ -87,20 +81,22 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="mt-6 text-base sm:text-lg text-secondary max-w-xl leading-relaxed pretty"
             >
-              Wonders are not made — they are born. You are now in the portfolio
-              of one of them. A fast learner, an achiever. From{" "}
+              I am a CSE graduate from East West University who works at the
+              intersection of{" "}
               <span className="text-[hsl(var(--text-primary))] font-medium">
-                AI/ML to full-stack
-              </span>{" "}
-              and combining them together is my hobby. Currently open to{" "}
+                AI, computer vision, and full-stack development
+              </span>
+              . I care about systems that do not stop at a demo. I build on
+              real data, for real users, and I keep maintaining my work long
+              after it ships. I am currently open to{" "}
               <span className="text-[hsl(var(--text-primary))] font-medium">
                 full-time roles
               </span>{" "}
               and{" "}
               <span className="text-[hsl(var(--text-primary))] font-medium">
                 fully funded PhD opportunities
-              </span>{" "}
-              in a related field.
+              </span>
+              .
             </motion.p>
 
             {/* CTAs */}
@@ -119,20 +115,7 @@ export function Hero() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <Link
-                href="/resume/Shahriar_Khan_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="btn-lift border-soft-accent bg-[hsl(var(--surface))] hover:bg-[hsl(var(--surface-elevated))] text-[hsl(var(--text-primary))] px-7 h-12 gap-2 text-base"
-                >
-                  <ArrowDown className="w-4 h-4" />
-                  Download CV
-                </Button>
-              </Link>
+              <CvDropdown />
             </motion.div>
 
             {/* Social row */}
@@ -213,14 +196,14 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Metric strip */}
+              {/* Fact strip */}
               <div className="grid grid-cols-3 gap-2 mt-3">
-                {HERO_METRICS.map((m) => (
+                {HERO_FACTS.map((m) => (
                   <div
                     key={m.label}
                     className="card-pro p-2.5 sm:p-3 text-center"
                   >
-                    <div className="text-lg sm:text-xl font-bold font-mono text-accent-blue leading-tight truncate">
+                    <div className="text-[13px] sm:text-sm font-semibold font-mono text-accent-blue leading-tight truncate">
                       {m.value}
                     </div>
                     <div className="text-[9px] sm:text-[10px] text-tertiary mt-1 leading-snug">

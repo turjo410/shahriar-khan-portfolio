@@ -32,7 +32,7 @@ export default function AboutPage() {
         >
           <span className="section-label">More About Me</span>
           <h1 className="mt-4 text-5xl sm:text-6xl font-bold tracking-tight balance">
-            Beyond the resume —{" "}
+            Beyond the resume,{" "}
             <span className="text-gradient-pro">my story</span>.
           </h1>
           <p className="mt-5 text-lg text-secondary max-w-2xl pretty">
@@ -68,12 +68,12 @@ export default function AboutPage() {
               Hi, I&apos;m Shahriar Khan.
             </h2>
             <p className="text-secondary leading-relaxed pretty">
-              I&apos;m an undergraduate Computer Science &amp; Engineering student
-              at East West University in Dhaka. My focus is production AI —
-              the kind that survives messy real-world data, deploys to edge
-              devices, and answers to actual users. I work across the stack
-              because the boundary between &quot;model&quot; and &quot;product&quot; is fuzzier
-              than most courses suggest.
+              I recently completed my B.Sc. in Computer Science &amp;
+              Engineering at East West University in Dhaka. My focus is
+              production AI, the kind that survives messy real-world data,
+              deploys to edge devices, and answers to actual users. I work
+              across the stack because the boundary between &quot;model&quot; and
+              &quot;product&quot; is fuzzier than most courses suggest.
             </p>
             <div className="flex flex-wrap gap-2 mt-6">
               <span className="pill">Computer Vision</span>
@@ -92,24 +92,24 @@ export default function AboutPage() {
               paths begin: I wanted to know how the things on my screen
               actually worked. That curiosity turned into long nights
               breaking neural networks, then patching them, then breaking
-              them again on slightly different data — until I started
+              them again on slightly different data, until I started
               understanding the difference between a model that demos well
               and a model that ships.
             </p>
             <p>
-              At East West University I&apos;ve built systems that I&apos;m proud of:
-              an YOLOv11 traffic enforcement platform with biometric case
-              filing, a PySpark + MLlib election analytics dashboard for the
-              13th Parliamentary election, an explainable-AI Streamlit app
-              with twelve trained models, and an EdTech SaaS used by 200+
-              members. None of these were assignments. They were attempts to
+              At East West University I built systems I&apos;m genuinely proud of:
+              a real-time traffic surveillance platform built in collaboration
+              with the Dhaka Metropolitan Police, an ML-powered dashboard for
+              the national parliamentary election, an explainable-AI tool for
+              image classification, and an AI learning platform with real
+              users. None of these were assignments. They were attempts to
               learn what real systems look like.
             </p>
             <p>
-              Today I&apos;m focused on the parts hiring managers rarely see —
-              robust data pipelines, reproducible training, edge
-              optimization, and clean APIs. The end result is software that
-              works on day one and still works on day three hundred.
+              Today I&apos;m focused on the parts hiring managers rarely see:
+              robust data pipelines, reproducible training, edge optimization,
+              and clean APIs. The end result is software that works on day
+              one and still works long after launch.
             </p>
           </div>
         </Section>
@@ -119,7 +119,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <ValueCard
               title="Continuous Learning"
-              description="The field moves fast. I commit to learning something new every week — a paper, a framework, a better engineering practice."
+              description="The field moves fast, so I commit to learning something new every week, whether a paper, a framework, or a better engineering practice."
             />
             <ValueCard
               title="Impact Over Hype"
@@ -131,7 +131,7 @@ export default function AboutPage() {
             />
             <ValueCard
               title="Quality &amp; Craftsmanship"
-              description="Code is read more than written. I take pride in clean, tested, well-documented work — even when no one is grading it."
+              description="Code is read more than written. I take pride in clean, tested, well-documented work, even when no one is grading it."
             />
           </div>
         </Section>
@@ -211,12 +211,12 @@ export default function AboutPage() {
             <HobbyCard
               icon={<Brain className="w-5 h-5" />}
               title="Competitive Programming"
-              description="General member of the EWU Programming Club. ICPC-style contests and weekly problem solving."
+              description="Member of the EWU Programming Club. ICPC-style contests and weekly problem solving."
             />
             <HobbyCard
               icon={<Sparkles className="w-5 h-5" />}
               title="Design Tinkering"
-              description="I designed every iteration of this portfolio myself — and I&apos;m never quite finished."
+              description="I designed every iteration of this portfolio myself, and I&apos;m never quite finished."
             />
           </div>
         </Section>
@@ -233,7 +233,10 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap items-start gap-3 text-sm">
               <Highlight icon={<GraduationCap className="w-4 h-4" />}>
-                Open to ML / SDE roles after graduation in 2026
+                Open to full-time ML and software engineering roles
+              </Highlight>
+              <Highlight icon={<Brain className="w-4 h-4" />}>
+                Fully funded PhD positions in computer vision and AI
               </Highlight>
               <Highlight icon={<MapPin className="w-4 h-4" />}>
                 Open to remote &amp; relocation
@@ -274,7 +277,7 @@ export default function AboutPage() {
           <blockquote className="text-2xl sm:text-3xl font-medium text-secondary italic balance">
             &ldquo;The best way to predict the future is to build it.&rdquo;
           </blockquote>
-          <p className="mt-3 text-sm text-tertiary">— Alan Kay</p>
+          <p className="mt-3 text-sm text-tertiary">Alan Kay</p>
         </motion.div>
       </div>
     </div>

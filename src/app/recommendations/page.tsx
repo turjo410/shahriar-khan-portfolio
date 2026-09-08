@@ -1,7 +1,7 @@
 import { ComingSoon } from "@/components/coming-soon"
 
 export const metadata = {
-  title: "Letters of Recommendation — Shahriar Khan",
+  title: "Letters of Recommendation · Shahriar Khan",
   description: "Faculty letters of recommendation and professional endorsements.",
 }
 

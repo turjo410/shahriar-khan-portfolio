@@ -24,9 +24,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shahriar Khan — AI/ML Engineer · Computer Vision · Full-Stack",
+  title: "Shahriar Khan · AI/ML Engineer · Computer Vision · Full-Stack",
   description:
-    "Shahriar Khan — Computer Science & Engineering at East West University, Dhaka, Bangladesh. Building production-ready AI systems: real-time object detection, election analytics dashboards, explainable AI, and full-stack platforms.",
+    "Shahriar Khan, a Computer Science & Engineering graduate from East West University, Dhaka, Bangladesh, building production-ready AI systems: real-time computer vision, explainable AI, ML dashboards, and full-stack platforms.",
   keywords: [
     "Shahriar Khan",
     "AI Engineer",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Shahriar Khan" }],
   openGraph: {
-    title: "Shahriar Khan — AI/ML Engineer",
+    title: "Shahriar Khan · AI/ML Engineer",
     description:
       "Building production-ready AI systems with real-world impact. Computer Vision · Deep Learning · Full-Stack.",
     type: "website",
@@ -73,9 +73,10 @@ export default function RootLayout({
                 <PillNav
                   items={[
                     { label: "About", href: "/#about" },
+                    { label: "Publications", href: "/#publications" },
                     { label: "Projects", href: "/#projects" },
-                    { label: "Skills", href: "/#skills" },
                     { label: "Experience", href: "/#experience" },
+                    { label: "Skills", href: "/#skills" },
                     { label: "About Me", href: "/about" },
                     { label: "Contact", href: "/#contact" },
                   ]}

@@ -31,20 +31,20 @@ const PROJECTS: Project[] = [
     num: "_01.",
     id: "trafficguard-ai",
     title: "TrafficGuard AI",
-    logline: "Real-time YOLOv11 enforcement platform for Dhaka traffic officers — 16 vehicle classes, ANPR, and a Gemini AI inspector assistant.",
-    facts: "Flutter + Python + Flask · 16 vehicle classes · Biometric case filing",
-    tags: ["AI/ML", "Mobile", "Flutter"],
+    logline: "Undergraduate thesis that grew into a working deployment, a real-time traffic surveillance and enforcement platform built in collaboration with the Dhaka Metropolitan Police.",
+    facts: "Flutter · Python · Flask · YOLOv11",
+    tags: ["AI/ML", "Research", "Full-Stack"],
     year: "2025",
-    status: "Research",
+    status: "Deployed",
     image: "/projects/trafficguard-architecture.jpg",
     links: { github: "https://github.com/turjo410/trafficguard-ai" },
   },
   {
     num: "_02.",
     id: "election-analytics",
-    title: "Bangladesh Election Analytics 2026",
-    logline: "PySpark + Next.js dashboard that modelled the 13th Parliamentary election — 84.78% Random Forest accuracy across 297 constituencies.",
-    facts: "PySpark · MLlib · React Native · 84.78% RF accuracy",
+    title: "Bangladesh Election Analytics",
+    logline: "An ML-powered dashboard that modelled the national parliamentary election with seat-level predictions and interactive visualizations.",
+    facts: "PySpark · MLlib · React Native",
     tags: ["Data Science", "Next.js", "PySpark"],
     year: "2026",
     status: "Live",
@@ -58,8 +58,8 @@ const PROJECTS: Project[] = [
     num: "_03.",
     id: "promptmaster-pro",
     title: "PromptMaster Pro",
-    logline: "Production EdTech SaaS for AI prompt engineering — 200+ paying members, 59 structured lessons, gamified badges, Supabase auth.",
-    facts: "React · Supabase · Lemon Squeezy · 200+ members",
+    logline: "A production AI learning platform with structured courses, interactive lessons, and gamified progression for prompt engineering.",
+    facts: "React · Supabase · Lemon Squeezy",
     tags: ["SaaS", "React", "EdTech"],
     year: "2025",
     status: "Live",
@@ -70,14 +70,14 @@ const PROJECTS: Project[] = [
     num: "_04.",
     id: "banana-xai",
     title: "Banana XAI Classification",
-    logline: "Streamlit research app classifying 4 Bangladeshi banana varieties with 12 deep learning models and 5 explainable AI methods.",
-    facts: "PyTorch · Grad-CAM · LIME · ViT · 12 models",
+    logline: "An interactive research dashboard for explainable image classification, comparing modern CNN and vision transformer models across several explanation techniques.",
+    facts: "PyTorch · Streamlit · Grad-CAM · LIME",
     tags: ["AI Research", "Python", "XAI"],
     year: "2025",
     status: "Live",
     image: "/projects/banana-xai-grid.jpg",
     links: {
-      github: "https://github.com/turjo410/banana-xai-classification",
+      github: "https://github.com/turjo410/banana-xai-streamlit",
       demo: "https://bananaapp.streamlit.app",
     },
   },
@@ -85,7 +85,7 @@ const PROJECTS: Project[] = [
     num: "_05.",
     id: "neofocus",
     title: "NeoFocus",
-    logline: "Gamified Flutter + Supabase productivity app with a custom Pomodoro arc timer, habit rings, and XP progression system.",
+    logline: "A gamified productivity app with a custom Pomodoro arc timer, habit rings, and an XP progression system to keep focus rewarding.",
     facts: "Flutter · Supabase · Riverpod",
     tags: ["Mobile", "Flutter", "Productivity"],
     year: "2025",
@@ -96,9 +96,9 @@ const PROJECTS: Project[] = [
   {
     num: "_06.",
     id: "energyiq",
-    title: "EnergyIQ — IoT Energy Dashboard",
-    logline: "Scroll-driven Next.js dashboard visualising real IoT energy data from a TOMZN smart meter on a Sharp refrigerator.",
-    facts: "Next.js · Recharts · Tuya IoT · Real hardware",
+    title: "EnergyIQ - IoT Energy Dashboard",
+    logline: "A scroll-driven dashboard visualising real IoT energy data streamed from smart meter hardware in a real household.",
+    facts: "Next.js · Recharts · Tuya IoT",
     tags: ["Full-Stack", "IoT", "Next.js"],
     year: "2025",
     status: "Live",
@@ -112,7 +112,7 @@ const PROJECTS: Project[] = [
     num: "_07.",
     id: "jetstream",
     title: "JetStream Music Player",
-    logline: "Hybrid streaming platform — glassmorphism React web client, Expo mobile app, and a Node.js server that resolves YouTube audio streams.",
+    logline: "A hybrid streaming platform with a glassmorphism React web client, a cross-platform Expo mobile app, and a Node.js server that resolves audio streams.",
     facts: "React · Expo · Express · Web Audio API",
     tags: ["Full-Stack", "Mobile", "React"],
     year: "2026",
@@ -124,7 +124,7 @@ const PROJECTS: Project[] = [
     num: "_08.",
     id: "expense-tracker",
     title: "Student Expense Tracker",
-    logline: "Offline-first Flutter finance app with OCR receipt scanning, savings goals, budget alerts, and 17 student-specific categories.",
+    logline: "An offline-first finance app for students with OCR receipt scanning, savings goals, and smart budget alerts.",
     facts: "Flutter · SQLite · Google ML Kit · Firebase",
     tags: ["Mobile", "Flutter", "Finance"],
     year: "2024",
@@ -136,12 +136,12 @@ const PROJECTS: Project[] = [
     num: "_09.",
     id: "saiful-portfolio",
     title: "Saiful Islam Portfolio",
-    logline: "Client-commissioned portfolio with Three.js 3D backgrounds, Framer Motion transitions, and an EmailJS contact form.",
-    facts: "Next.js 14 · Three.js · Framer Motion · Client work",
+    logline: "A client-commissioned portfolio with Three.js 3D backgrounds, Framer Motion transitions, and an integrated contact form.",
+    facts: "Next.js · Three.js · Framer Motion · Client work",
     tags: ["Full-Stack", "Three.js", "Client"],
     year: "2024",
     status: "Deployed",
-    links: {},
+    links: { github: "https://github.com/turjo410/saiful-islam" },
   },
 ]
 
@@ -332,13 +332,13 @@ export function Projects() {
             className="mt-5 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
           >
             <h2 className="text-display font-bold tracking-tight balance display-text">
-              9 projects.{" "}
-              <span className="text-gradient-pro">All shipped.</span>
+              Selected{" "}
+              <span className="text-gradient-pro">work.</span>
             </h2>
 
             <p className="text-sm text-tertiary font-mono sm:text-right sm:max-w-xs leading-relaxed">
-              Every project below is deployed, live with paying users, or
-              in active research iteration.
+              A snapshot of research, product, and client projects, each built
+              to run in the real world.
             </p>
           </motion.div>
         </div>

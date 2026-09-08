@@ -169,7 +169,7 @@ export function Footer() {
           </p>
 
           <Link
-            href="/resume/Shahriar_Khan_Resume.pdf"
+            href="/cv/ShahriarKhan_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 text-[11px] font-mono

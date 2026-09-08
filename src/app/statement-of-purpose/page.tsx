@@ -1,7 +1,7 @@
 import { ComingSoon } from "@/components/coming-soon"
 
 export const metadata = {
-  title: "Statement of Purpose — Shahriar Khan",
+  title: "Statement of Purpose · Shahriar Khan",
   description: "Personal statement and graduate-school motivation letter.",
 }
 

@@ -3,6 +3,7 @@ import { About } from "@/components/sections/about"
 import { Projects } from "@/components/sections/projects"
 import { Skills } from "@/components/sections/skills"
 import { Experience } from "@/components/sections/experience"
+import { Publications } from "@/components/sections/publications"
 import { Achievements } from "@/components/sections/achievements"
 import { Contact } from "@/components/sections/contact"
 import { ScrollVelocity } from "@/components/scroll-velocity"
@@ -26,6 +27,7 @@ export default function Home() {
       />
 
       <About />
+      <Publications />
       <Projects />
 
       {/* TrueFocus interstitial — replaces GlassLens */}
@@ -48,8 +50,8 @@ export default function Home() {
         </div>
       </section>
 
-      <Skills />
       <Experience />
+      <Skills />
       <Achievements />
       <Contact />
     </>
